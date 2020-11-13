@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30621.155
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MACOs.JY.DataLogger", "MACOs.JY.DataLogger.csproj", "{274A92C7-3E35-4BA8-AD44-E6534B945166}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{274A92C7-3E35-4BA8-AD44-E6534B945166}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{274A92C7-3E35-4BA8-AD44-E6534B945166}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{274A92C7-3E35-4BA8-AD44-E6534B945166}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{274A92C7-3E35-4BA8-AD44-E6534B945166}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1E90D53C-AB5F-4731-87F7-377DCAA1C6B7}
+	EndGlobalSection
+EndGlobal

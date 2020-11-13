@@ -348,3 +348,5 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+/MACOs.JY.DataLogger.cd
+/ClassDiagram1.cd
