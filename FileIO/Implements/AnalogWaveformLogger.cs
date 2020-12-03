@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 
 namespace MACOs.JY.DataLogger.FileIO.Implements
 {
@@ -102,13 +103,14 @@ namespace MACOs.JY.DataLogger.FileIO.Implements
         public override ChartData ReadData(Channel ch, int start = 0, int len = 0)
         {
             var chartData = new ChartData();//实例化绘图数据
+            AnalogWaveformFile anaWavFile = null;
+
             try
             {
                 Func<double, double> func = new Func<double, double>(y => ch.Sacle * y + ch.Offset);
 
                 var group = ch.Group;
                 string wvfFilePath = group.Project.Directory + @"\" + group.Name + ".wvf";
-                AnalogWaveformFile anaWavFile;
                 FileOperation fo = FileOperation.OpenWithReadOnly;
 
                 anaWavFile = new AnalogWaveformFile(wvfFilePath, fo);//新建wvf文件实例
@@ -173,6 +175,7 @@ namespace MACOs.JY.DataLogger.FileIO.Implements
             }
             catch (Exception ex)
             {
+                anaWavFile?.Close();
                 BindingFlags flags = BindingFlags.Instance | BindingFlags.NonPublic;
                 FieldInfo hresultFieldInfo = typeof(Exception).GetField("_HResult", flags);
 
@@ -267,14 +270,26 @@ namespace MACOs.JY.DataLogger.FileIO.Implements
 
         private void Scaling(ref double[,] data, Func<double, double> func)
         {
+            double[,] dummy = data;
             int rowNum = data.GetLength(0);
             int colNum = data.GetLength(1);
-            for (int i = 0; i < rowNum; i++)
+            try
             {
-                for (int j = 0; j < colNum; j++)
+
+                for (int i = 0; i < rowNum; i++)
                 {
-                    data[i, j] = func.Invoke(data[i, j]);
+                    for (int j = 0; j < colNum; j++)
+                    {
+                        dummy[i, j] = func.Invoke(dummy[i, j]);
+                    }
                 }
+                data = dummy;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
             }
         }
     }

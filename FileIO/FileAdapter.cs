@@ -8,7 +8,7 @@ namespace MACOs.JY.DataLogger.FileIO
         public static void WriteConfigureFile(Project p)
         {
             XmlSerializer x = new XmlSerializer(p.GetType());
-            string path = @".\" + p.Name + @".xml";
+            string path = p.Directory+p.Path;
             TextWriter fs = new StreamWriter(path, false);
             x.Serialize(fs, p);
             fs.Close();

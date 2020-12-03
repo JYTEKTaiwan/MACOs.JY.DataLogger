@@ -26,7 +26,7 @@ namespace MACOs.JY.DataLogger.FileIO
         public string Directory { get; set; }
 
         [Category("General")]
-        public string Path { get { return @".\" + this.Name + @".xml"; } }
+        public string Path { get { return this.Name + @".xml"; } }
 
         [Category("Advance")]
         public string Description
@@ -50,7 +50,7 @@ namespace MACOs.JY.DataLogger.FileIO
             string currentTimeStamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
             this.Name = currentTimeStamp;
 
-            this.Directory = @".\Data\" + currentTimeStamp;
+            this.Directory = @"..\Log\Data\" + currentTimeStamp;
         }
 
         public Project(string prjName, string logDirectory)
@@ -62,11 +62,11 @@ namespace MACOs.JY.DataLogger.FileIO
 
             if (string.IsNullOrEmpty(logDirectory))
             {
-                this.Directory = @".\Data\" + currentTimeStamp;
+                this.Directory = @".\Data\";
             }
             else
             {
-                this.Directory = logDirectory + @"\" + currentTimeStamp;
+                this.Directory = logDirectory + @"\Log\";
             }
         }
 
